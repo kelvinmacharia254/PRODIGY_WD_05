@@ -2,7 +2,7 @@
 //  Display elements
 const iconElement = document.querySelector('.weather-icon');
 const locationIcon = document.querySelector('.location-icon');
-const tempElement = document.querySelector('.temperature-value');
+const tempElement = document.querySelector('.temperature-value p');
 const descElement = document.querySelector('.temperature-description p');
 const locationElement = document.querySelector('.location p');
 const notificationElement = document.querySelector('.notification');
@@ -87,14 +87,13 @@ async function getWeatherData (location) {
 function displayweather(){
     searchInput.value = weather.city
     iconElement.innerHTML = `<img src="https://openweathermap.org/img/wn/${weather.iconId}@2x.png">`
-    // iconElement.innerHTML = `<img src="icons/${weather.iconId}.png">`
-    tempElement.innerHTML = `${weather.temparature.value}<sup>o</sup><span>C</span>`
+    tempElement.innerHTML = `${weather.temparature.value}<sup>&deg;</sup><span>C</span>`
     descElement.innerHTML = weather.description
     locationElement.innerHTML = `${weather.city}, ${weather.country}\n [${latitude}, ${longitude}]`
 }
 
 searchInput.addEventListener('keyup', event => {
-    if (event.keyCode ===13){
+    if (event.keyCode === 13){
         event.preventDefault()
 
         city=searchInput.value;

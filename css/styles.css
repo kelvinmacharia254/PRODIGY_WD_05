@@ -1,97 +1,108 @@
-@font-face {
-    font-family: "Montserrat";
-    src: url("font/montserrat/Montserrat-Regular.ttf");
-}
 * {
-    font-family: Montserrat;
+    box-sizing: border-box;
 }
 
-body{
+html {
+    font-size: 62.5%; /* 1rem = 10px for easier scaling */
+}
+
+body {
+    font-family: "Montserrat", sans-serif;
     background-image: url("../images/pexels-johannes-plenio-1118873.jpg");
-    height: 500px;
+    line-height: 1.6;
+    height: 100vh; /* Stretch the background to cover the whole viewport */
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
 }
 
-.container{
+.container {
     width: 50%;
-    background-color: white;
-    align-self: center;
+    background-color: rgba(255, 255, 255, 0.5);
     display: block;
     margin: 100px auto;
     border-radius: 10px;
     padding: 50px;
-    box-shadow: 5px 10px 20px black ;
+    box-shadow: 5px 10px 20px black;
 }
 
-.app-title{
+.app-title {
     width: 100%;
-    height:150px;
-    align-self: center;
-    /*background-color: steelblue;*/
-    border-radius: 10px 10px 10px 10px;
+    height: auto;
     display: flex;
-    align-items:center;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
-    flex-direction:  column;
+    text-align: center;
+    margin-bottom: 20px;
 }
 
-.app-title p{
-    text-align: center;
-    padding: 15px;
-    margin: 0 auto;
-    font-size: 1.2em;
+.app-title p {
+    font-size: 2rem; /* Slightly larger for better readability */
     color: #333;
 }
 
-#search{
+#search {
     display: block;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 5px;
-    width:40%;
-    height: 20px;
-    border-radius: 5px;
+    margin: 10px auto;
+    padding: 1rem;
+    width: 80%;
+    border-radius: 2rem;
     outline: none;
     border: 3px solid steelblue;
 }
 
-.notification{
-    background-color: white;
+.notification {
     display: none;
-}
-
-.notification{
     color: maroon;
-    font-size: 1.2em;
-    margin: 0;
+    font-size: 1.6rem; /* More readable notification text */
     padding: 10px 0;
 }
 
-.weather-container{
+.weather-container {
     width: 100%;
-    height: 260px;
-    background-color: white;
-    margin-top: 20px;
+    text-align: center;
 }
 
-.weather-icon{
-    width:100%;
-    height:128px;
+.weather-icon {
+    width: 100%;
+    height: 128px;
 }
 
-.weather-icon img{
+.weather-icon img {
     display: block;
     width: 100px;
     margin: 10px auto;
-    cursor: pointer;
-    padding: 5px;
-    border: steelblue;
     border-radius: 10px;
-    color: steelblue;
+    cursor: pointer;
 }
 
+.temperature-value {
+    font-size: 3rem;
+    color: #ff0202;
+}
+
+.temperature-value sup {
+    color: #293251;
+}
+
+.temperature-value span {
+    color: #293251;
+    font-size: 0.5em;
+}
+
+.temperature-description {
+    margin: 10px 0;
+    color: #293251;
+    font-size: 1.8rem; /* Larger to fit with other text */
+}
+
+.location p {
+    margin: 0;
+    padding: 0;
+    color: #293251;
+    font-size: 1.6rem; /* Adjusted to be more readable */
+}
 
 .location-icon {
     width: 100%;
@@ -99,54 +110,15 @@ body{
     padding: 10px;
 }
 
-.location-icon img{
+.location-icon img {
     display: block;
     width: 60px;
     margin: 10px auto;
     cursor: pointer;
-    padding: 5px;
-    border: steelblue;
     border-radius: 10px;
-    color: steelblue;
 }
 
-.temperature-value{
-    width:100%;
-    height: 60px;
-    font-size: 1.0rem;
-    text-align: center;
-}
-
-.temperature-value p{
-    padding: 0;
-    margin: 0;
-    color: darkgray;
-    font-size: 7em;
-    text-align:center;
-}
-
-.temperature-value span{
-    color: #293251;
-    font-size: 0.5em;
-}
-
-.temperature-description{
-    padding: 8px;
-    margin: 0px;
-    color: #293251;
-    text-align: center;
-    font-size: 1.2em;
-}
-
-.location p{
-    margin:0;
-    padding: 0;
-    color: #293251;
-    text-align: center;
-    font-size: 0.8em;
-}
-
-div.relative{
+div.relative {
     position: absolute;
     top: 600px;
     right: 120px;
