@@ -63,22 +63,24 @@ async function callWeatherAPI(location){
     // Check for HTTP errors like 404, 401, etc.
     if (!response.ok) {
         if (response.status === 404) {
-             throw new Error("Failed to fetch weather info. Location couldn't found be")
+             throw new Error(`Location couldn't be found[${response.status}]`)
         } else if (response.status === 401) {
-            throw new Error("Failed to fetch weather info. Invalid API KEY")
+            throw new Error(`Invalid API KEY[${response.status}]`)
         } else{
-            throw new Error("Failed to fetch weather info due to server errors.")
+            throw new Error("Server errors")
         }
-
     }
     console.log("No error from fetch API...")
     const weatherInfo = await response.json();
 
     return weatherInfo;
     }catch(error){
-        // network-related errors like "Failed to fetch"
-        console.log("Fetch threw a network error...")
-        throw new Error("Failed to fetch weather info.Network or Fetch error.")
+        console.log("Fetch threw a error...")
+        // handle generic network-related errors like "Failed to fetch"
+        if(error.message === "Failed to fetch"){
+            throw new Error("Failed to fetch weather info!! Check your Internet connection")
+        }
+        throw new Error(`Failed to fetch weather info!! ${error.message} `)
     }
 }
 
@@ -94,9 +96,10 @@ async function getWeatherData (location) {
         weather.city = weatherData.name
         weather.country = weatherData.sys.country
         notificationElement.style.display = 'none';
-        displayweather()
+        weatherDisplay()
         console.log(`weather = ${weather}`)
     } catch (error) {
+        resetWeatherDisplay()
         console.log("Received fetch error")
         console.error(error.message); // Log any errors
         notificationElement.style.display = 'block';
@@ -105,14 +108,24 @@ async function getWeatherData (location) {
 };
 
 
-function displayweather(){
+function weatherDisplay(){
     searchInput.value = weather.city
     iconElement.innerHTML = `<img src="https://openweathermap.org/img/wn/${weather.iconId}@2x.png">`
-    actualTempElement.innerHTML = `${weather.temparature.value}<sup>&deg;</sup><span>C</span>`
+    actualTempElement.innerHTML = `${weather.temparature.value}<sup>&deg;</sup><span>C</span>&nbsp;&nbsp;|&nbsp;&nbsp;`
     feelsTempElement.innerHTML = `<span>Feels like</span> ${weather.temparature.feels}<sup>&deg;</sup><span>C</span>`
     descElement.innerHTML = weather.description
     locationElement.innerHTML = `${weather.city}, ${weather.country}\n [${latitude}, ${longitude}]`
 }
+
+function resetWeatherDisplay(){
+    searchInput.value = ""
+    iconElement.innerHTML = ""
+    actualTempElement.innerHTML = ""
+    feelsTempElement.innerHTML = ""
+    descElement.innerHTML = ""
+    locationElement.innerHTML = ""
+}
+
 
 searchInput.addEventListener('keyup', event => {
     if (event.keyCode === 13){

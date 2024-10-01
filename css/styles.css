@@ -22,6 +22,7 @@ body {
 }
 
 #search {
+    font-size: 1.6rem;
     width: 50%;
     display: block;
     margin: 10px auto;
@@ -55,6 +56,7 @@ body {
     align-items: center;
     justify-content: center;
     text-align: center;
+    margin-bottom: 2rem;
 }
 
 .app-title h1{
@@ -70,9 +72,10 @@ body {
 .notification {
     display: none;
     color: #F44336FF;
+    background-color: #8bc9fa;
     margin-top: 3rem;
     font-size: 1.6rem;
-    padding: 1rem;
+    padding: 0.5rem;
 }
 
 .weather-container {
@@ -128,11 +131,14 @@ body {
     width: 100%;
     height: 40px;
     padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .location-icon img {
-    /*display: block;*/
     width: 60px;
     cursor: pointer;
 }
+
 
